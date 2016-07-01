@@ -43,8 +43,14 @@ else:
 	driver.get('http://www.sportsplays.com/make-pick.html')
 
 	driver.find_element_by_link_text(league).click()
+	time.sleep(3)
+	rowsContainingTeam = driver.find_elements_by_xpath("//*[contains(text(), '" + team + "')]")
 
-	
+	checkBoxCell = rowsContainingTeam[0].find_elements_by_xpath("following-sibling::td")
+
+	checkBox = checkBoxCell[0].find_elements_by_id('pick')
+
+	checkBox[0].click()
 
 	time.sleep(5)
 	driver.quit()
